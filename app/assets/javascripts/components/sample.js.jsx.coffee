@@ -14,8 +14,21 @@
     `<div className="CommentList">{commentNodes}</div>`
 
 @CommentForm = React.createClass
+  handleSubmit: (e) ->
+    e.preventDefault()
+    author = @refs.author.getDOMNode().value.trim()
+    text = @refs.text.getDOMNode().value.trim()
+    console.log [author, text]
+    return unless text && author
+    # TODO: send request to the server
+    @refs.author.getDOMNode().value = ''
+    @refs.text.getDOMNode().value = ''
   render: ->
-    `<div className="CommentForm">CommentForm.</div>`
+    `<form className="commentForm" onSubmit={this.handleSubmit}>
+      <input type="text" placeholder="Name" ref="author" />
+      <input type="text" placeholder="Comment" ref="text" />
+      <input type="submit" value="Post" />
+    </form>`
 
 @CommentBox = React.createClass
   getInitialState: -> data: []
@@ -24,7 +37,6 @@
       url: @props.url
       dataType: 'json'
     .done (data) =>
-      console.log data
       @setState data: data
     .fail (xhr, status, err) =>
       console.error @props.url, status, err.toString()
