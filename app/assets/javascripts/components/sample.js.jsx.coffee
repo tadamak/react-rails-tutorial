@@ -43,6 +43,7 @@
     @loadCommentsFromServer()
     setInterval @loadCommentsFromServer, @props.pollInterval
   handleCommentSubmit: (comment) ->
+    @setState data: @state.data.concat [comment]
     $.ajax
       url: @props.url
       dataType: 'json'
