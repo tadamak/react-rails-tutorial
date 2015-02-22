@@ -1,6 +1,16 @@
+@Comment = React.createClass
+  render: ->
+    `<div className="comment">
+      <h2 className="commentAuthor">{this.props.author}</h2>
+      {this.props.children}
+    </div>`
+
 @CommentList = React.createClass
   render: ->
-    `<div className="CommentList">CommentList.</div>`
+    `<div className="CommentList">
+      <Comment author="author1">comment1</Comment>
+      <Comment author="author2">comment2</Comment>
+    </div>`
 
 @CommentForm = React.createClass
   render: ->
