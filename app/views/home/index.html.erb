@@ -1,3 +1,5 @@
 <h1>Home#index</h1>
 
-<%= react_component 'CommentBox', {} %>
+<% data = [{ author: 'author1', text: 'comment1' }, { author: 'author2', text: 'comment2' }] %>
+<%= react_component 'CommentBox', { data: data } %>
+
