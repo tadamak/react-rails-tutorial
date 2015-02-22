@@ -10,7 +10,7 @@
 
 @CommentList = React.createClass
   render: ->
-    commentNodes = @props.data.map (comment) -> `<Comment author={comment.author}>{comment.text}</Comment>`
+    commentNodes = @props.data.map (comment, index) -> `<Comment author={comment.author} key={index}>{comment.text}</Comment>`
     `<div className="CommentList">{commentNodes}</div>`
 
 @CommentForm = React.createClass
