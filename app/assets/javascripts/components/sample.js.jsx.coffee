@@ -1,3 +1,3 @@
-Sample = React.createClass
+@CommentBox = React.createClass
   render: ->
-    `<div />`
+    `<div className="CommentBox">CommentBox.</div>`
