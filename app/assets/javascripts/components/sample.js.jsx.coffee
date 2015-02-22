@@ -18,9 +18,22 @@
     `<div className="CommentForm">CommentForm.</div>`
 
 @CommentBox = React.createClass
+  getInitialState: -> data: []
+  loadCommentsFromServer: ->
+    $.ajax
+      url: @props.url
+      dataType: 'json'
+    .done (data) =>
+      console.log data
+      @setState data: data
+    .fail (xhr, status, err) =>
+      console.error @props.url, status, err.toString()
+  componentDidMount: ->
+    @loadCommentsFromServer()
+    setInterval @loadCommentsFromServer, @props.pollInterval
   render: ->
     `<div className="CommentBox">
       <h1>Comments</h1>
-      <CommentList data={this.props.data} />
+      <CommentList data={this.state.data} />
       <CommentForm />
     </div>`

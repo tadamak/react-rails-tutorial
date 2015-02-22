@@ -1,5 +1,4 @@
 <h1>Home#index</h1>
 
-<% data = [{ author: 'author1', text: 'comment1' }, { author: 'author2', text: 'comment2' }] %>
-<%= react_component 'CommentBox', { data: data } %>
+<%= react_component 'CommentBox', { url: api_comments_path, pollInterval: 2000 } %>
 
