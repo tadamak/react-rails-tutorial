@@ -18,9 +18,8 @@
     e.preventDefault()
     author = @refs.author.getDOMNode().value.trim()
     text = @refs.text.getDOMNode().value.trim()
-    console.log [author, text]
     return unless text && author
-    # TODO: send request to the server
+    @props.onCommentSubmit author: author, text: text
     @refs.author.getDOMNode().value = ''
     @refs.text.getDOMNode().value = ''
   render: ->
@@ -43,9 +42,19 @@
   componentDidMount: ->
     @loadCommentsFromServer()
     setInterval @loadCommentsFromServer, @props.pollInterval
+  handleCommentSubmit: (comment) ->
+    $.ajax
+      url: @props.url
+      dataType: 'json'
+      type: 'POST'
+      data: comment: comment
+    .done (data) =>
+      @setState data: data
+    .fail (xhr, status, err) =>
+      console.error @props.url, status, err.toString()
   render: ->
     `<div className="CommentBox">
       <h1>Comments</h1>
       <CommentList data={this.state.data} />
-      <CommentForm />
+      <CommentForm onCommentSubmit={this.handleCommentSubmit} />
     </div>`
