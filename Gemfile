@@ -11,6 +11,7 @@ gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
+gem 'nprogress-rails'
 
 group :development, :test do
   gem 'byebug'
