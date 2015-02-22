@@ -1,8 +1,12 @@
+@converter = new Showdown.converter()
+
 @Comment = React.createClass
   render: ->
+    rawMarkup = converter.makeHtml @props.children.toString()
+    console.log rawMarkup
     `<div className="comment">
       <h2 className="commentAuthor">{this.props.author}</h2>
-      {this.props.children}
+      <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
     </div>`
 
 @CommentList = React.createClass
