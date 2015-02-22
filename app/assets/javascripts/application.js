@@ -15,10 +15,10 @@
 //= require turbolinks
 //= require react
 //= require react_ujs
-//= require components
 //= require nprogress
 //= require nprogress-turbolinks
 //= require nprogress-ajax
+//= require components
 //= require_tree .
 
 NProgress.configure({
